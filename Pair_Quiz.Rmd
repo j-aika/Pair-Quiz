@@ -1,0 +1,8 @@
+---
+title: "Pair Quiz"
+author: 
+- Jessica Dela Cruz
+- John Lester Santos
+output: html_document
+---
+
