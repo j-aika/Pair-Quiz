@@ -5,4 +5,11 @@ author:
 - John Lester Santos
 output: html_document
 ---
+```{r, echo = FALSE}
+data2 <- read.csv("Study2Data2.csv", header =TRUE)
+attach(data2)
+model2<-lm(useful_range ~ Brightness + Contrast)
+summary(model2)
+plot(model2)
+```
 
