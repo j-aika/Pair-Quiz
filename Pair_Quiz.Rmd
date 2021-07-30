@@ -5,6 +5,68 @@ author:
 - John Lester Santos
 output: html_document
 ---
+### 1. An article in the Journal of Sound and Vibration ["Measurement of Noise-Evoked Blood Pressure by Means of Averaging Method: Relation between Blood Pressure Rise and PSL" (1991, Vol. 151(3), pp. 383-394)] described a study investigating the relationship between noise exposure and hypertension. The following data are representative of those reported in the article.
+
+#### a. Draw a scatter diagram of y (blood pressure rise in millimeters of mercury) versus x (sound pressure level in decibels). Does a simple linear regression model seem reasonable in this situation?
+
+A Simple Linear Regression model is reasonable to use in this situation becuase the data lies on a straight line.
+
+```{r, echo=FALSE}
+BP_data = read.csv("bp2.csv")
+
+# Add regression line
+plot(BP_data$ne,BP_data$bpr, main = "Blood Pressure Rise with Varying Noise Exposure",
+     xlab = "Noise Exposure (in db)", ylab = "Blood Pressure Rise",
+     pch = 19, frame = FALSE)
+abline(lm(BP_data$bpr ~ BP_data$ne, data = BP_data), col = "blue")
+```
+
+#### b. Fit the simple linear regression model using least squares. Find an estimate of $\sigma^2$.
+
+```{r, echo=FALSE}
+linearMod <- lm(BP_data$bpr ~ BP_data$ne, data=BP_data)
+summary(linearMod)
+```
+
+$$\LARGE \hat{\beta}_1 = 0.174$$
+$$\LARGE \hat{\beta}_0 = -10.131$$
+
+#### Fitted Simple Linear Regression Model:
+
+$$\LARGE \hat{y} = \hat{\beta}_0 + \hat{\beta}_1 x = -10.131 + 0.174x$$
+
+
+#### Estimate of $\sigma^2$: **1.318**
+
+<br><br>
+
+#### c. Find the Predicted Mean Rise with 85 decibels.
+
+$$\LARGE \hat{y} = -10.107 + 0.174(85) = 4.683$$
+
+***
+
+### 2. An article in Optical Engineering ["Operating Curve Extraction of a Correlator's Filter" (2004, Vol. 43, pp. 2775-2779)] reported on the use of an optical correlator to perform an experiment by varying brightness and contrast. The resulting modulation is characterized by the useful range of gray levels. The data follow:
+
+#### a. Fit a multiple linear regression model to these data.
+
+```{r, echo=FALSE}
+optic_data = read.csv("optic.csv")
+
+model <- lm(range ~ bright + contrast, data = optic_data)
+summary(model)
+```
+
+Multiple Linear Regression: 
+
+$Y = \beta_0 +\beta_1 x_1+ \beta_2 x_2 + \epsilon$
+
+where $Y = Useful Range, x_1 = Brightness, x_2= Contrast$
+
+
+Least Squares Normal equation: 
+
+
 ```{r, echo = FALSE}
 data2 <- read.csv("Study2Data2.csv", header =TRUE)
 attach(data2)
