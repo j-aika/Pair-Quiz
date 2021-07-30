@@ -9,7 +9,7 @@ output: html_document
 
 #### a. Draw a scatter diagram of y (blood pressure rise in millimeters of mercury) versus x (sound pressure level in decibels). Does a simple linear regression model seem reasonable in this situation?
 
-A Simple Linear Regression model is reasonable to use in this situation becuase the data lies on a straight line.
+A Simple Linear Regression model is reasonable to use in this situation because the data lies on a straight line.
 
 ```{r, echo=FALSE}
 BP_data = read.csv("bp2.csv")
@@ -63,15 +63,38 @@ $Y = \beta_0 +\beta_1 x_1+ \beta_2 x_2 + \epsilon$
 
 where $Y = Useful Range, x_1 = Brightness, x_2= Contrast$
 
+#### Fitted Multiple Linear Regression Model:
 
-Least Squares Normal equation: 
+$Y = 238.6 + 0.3339x_ -2.717 x_2$
+
+<h4> Estimate  $\sigma^2$ </h4>
+
+$\hat{\sigma^2}= RSE^2=(36.35)^2=1321$
+
+#### Compute the standard errors of the regression coefficients.
+
+$SE_{B_0}=45.23$ <br>
+$SE_{B_1}=0.6763$ <br>
+$SE_{B_2}=0.6887$ <br>
+
+#### Predict the useful range when brightness = 80 and contrast = 75
+
+Useful range $= 238.6 + 0.3339(brightness) - 2.717(contrast)$ <br>
+$=238.6+0.3339(80)-2.717(75)$ <br>
+$=59.737$ ng <br>
+
+#### Test for significance of regression using α=0.05. What is the P-value for this test?
+
+$P-value=0.01459$
+
+#### Construct a t-test on each regression coefficient. What conclusions can you draw about the variables in this model? Use α=0.05.
+
+We failed to reject the null hypothesis for $\beta_1$. On the other hand, the null hypothesis for $\beta_2$ is rejected. Contrast have a correlation with useful range.
 
 
-```{r, echo = FALSE}
-data2 <- read.csv("Study2Data2.csv", header =TRUE)
-attach(data2)
-model2<-lm(useful_range ~ Brightness + Contrast)
-summary(model2)
-plot(model2)
-```
+
+
+
+
+
 
