@@ -28,6 +28,8 @@ linearMod <- lm(BP_data$bpr ~ BP_data$ne, data=BP_data)
 summary(linearMod)
 ```
 
+
+
 $$\LARGE \hat{\beta}_1 = 0.174$$
 $$\LARGE \hat{\beta}_0 = -10.131$$
 
@@ -48,48 +50,76 @@ $$\LARGE \hat{y} = -10.107 + 0.174(85) = 4.683$$
 
 ### 2. An article in Optical Engineering ["Operating Curve Extraction of a Correlator's Filter" (2004, Vol. 43, pp. 2775-2779)] reported on the use of an optical correlator to perform an experiment by varying brightness and contrast. The resulting modulation is characterized by the useful range of gray levels. The data follow:
 
-#### a. Fit a multiple linear regression model to these data.
+#### A. Fit a multiple linear regression model to these data.
 
 ```{r, echo=FALSE}
 optic_data = read.csv("optic.csv")
-
 model <- lm(range ~ bright + contrast, data = optic_data)
 summary(model)
 ```
 
-Multiple Linear Regression: 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
 
-$Y = \beta_0 +\beta_1 x_1+ \beta_2 x_2 + \epsilon$
+library(here)
+library(kableExtra)
+library(tidyverse)
 
-where $Y = Useful Range, x_1 = Brightness, x_2= Contrast$
+dt<-here::here("results2.csv") %>%
+  readr::read_csv()
+```
+
+```{r, echo=FALSE, results="asis"}
+dt %>%
+  kbl(caption = "Table 1: Regression Analysis") %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
+
 
 #### Fitted Multiple Linear Regression Model:
 
-$Y = 238.6 + 0.3339x_ -2.717 x_2$
+$$\large Y = \beta_0 +\beta_1 x_1+ \beta_2 x_2 + \epsilon $$
+ $$\large =238.6+0.3339x_1-2.717x_2$$
 
-<h4> Estimate  $\sigma^2$ </h4>
+<center>where $Y = Useful\:Range, x_1 = Brightness, x_2= Contrast$</center>
 
-$\hat{\sigma^2}= RSE^2=(36.35)^2=1321$
 
-#### Compute the standard errors of the regression coefficients.
+<h4> B. Estimate  $\sigma^2$: </h4>
 
-$SE_{B_0}=45.23$ <br>
-$SE_{B_1}=0.6763$ <br>
-$SE_{B_2}=0.6887$ <br>
+$$\large \hat{\sigma^2}= RSE^2=(36.35)^2=1321$$
 
-#### Predict the useful range when brightness = 80 and contrast = 75
+#### C. Compute the standard errors of the regression coefficients.
 
-Useful range $= 238.6 + 0.3339(brightness) - 2.717(contrast)$ <br>
-$=238.6+0.3339(80)-2.717(75)$ <br>
-$=59.737$ ng <br>
+$$SE_{B_0}=45.23$$
+$$SE_{B_1}=0.6763$$ 
+$$SE_{B_2}=0.6887$$
 
-#### Test for significance of regression using α=0.05. What is the P-value for this test?
+#### D. Predict the useful range when brightness = 80 and contrast = 75
 
-$P-value=0.01459$
+$$UsefulRange= 238.6 + 0.3339(brightness) - 2.717(contrast)$$ 
+$$=238.6+0.3339(80)-2.717(75)$$ 
+<center> <div class="ans">$$=59.737\:ng$$  </div> </center>
 
-#### Construct a t-test on each regression coefficient. What conclusions can you draw about the variables in this model? Use α=0.05.
+#### E. Test for significance of regression using α=0.05. What is the P-value for this test?
 
-We failed to reject the null hypothesis for $\beta_1$. On the other hand, the null hypothesis for $\beta_2$ is rejected. Contrast have a correlation with useful range.
+<center> <div class="ans"> $P-value=0.01459$  </div> </center>
+
+#### F. Construct a t-test on each regression coefficient. What conclusions can you draw about the variables in this model? Use α=0.05.
+
+<p> We failed to reject the null hypothesis for $\beta_1$. On the other hand, the null hypothesis for $\beta_2$ is rejected. Contrast have a correlation with useful range. </p>
+
+
+```{css, echo = FALSE}
+div.ans {
+ position: relative;
+  left:30px;
+  width:300px;
+  background-color: yellow;
+}
+p {
+  font-size: 20px;
+}
+```
 
 
 
