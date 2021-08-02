@@ -106,7 +106,19 @@ $$=238.6+0.3339(80)-2.717(75)$$
 
 #### F. Construct a t-test on each regression coefficient. What conclusions can you draw about the variables in this model? Use α=0.05.
 
-<p> We failed to reject the null hypothesis for $\beta_1$. On the other hand, the null hypothesis for $\beta_2$ is rejected. Contrast have a correlation with useful range. </p>
+<p>**Hypotheses:** </p>
+$\large H_0:B_0=0,\: H_1:B_0\neq0$<br>
+$\large H_0:B_1=0,\: H_1:B_1\neq0$<br>
+$\large H_0:B_2=0,\: H_1:B_2\neq0$<br><br>
+<p>**Reject** $H_0:B=0$ **if: the P-value is less than 0.05.** </p>
+<p>**Test statistic:** </p>
+<p>Based from the table above the t-values are</p>
+$$\large t_0=5.27$$
+$$\large t_1=0.494$$
+$$\large t_2=-3.95$$
+<p>**Test statistic:** </p>
+<p>Conclusion: We can see from the table that the p-values for $B_0,\:B_1,\:B_2$ are $0.00188,\:0.639 and\: 0.00759$ respectively. Therefore, $H_0:B_0=0\:and\: H_0:B_2=0$ are rejected while $H_0:B_1=0$ is not. </p>
+<p>*Practical Interpretation:* The intercept and contrast is significant to the linear regression model while the brightness is not. </p> 
 
 
 ```{css, echo = FALSE}
@@ -117,7 +129,7 @@ div.ans {
   background-color: yellow;
 }
 p {
-  font-size: 20px;
+  font-size: 15px;
 }
 ```
 
