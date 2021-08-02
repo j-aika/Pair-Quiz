@@ -28,6 +28,22 @@ linearMod <- lm(BP_data$bpr ~ BP_data$ne, data=BP_data)
 summary(linearMod)
 ```
 
+```{r setup1, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+
+library(here)
+library(kableExtra)
+library(tidyverse)
+
+dt<-here::here("results7.csv") %>%
+  readr::read_csv()
+```
+
+```{r, echo=FALSE, results="asis"}
+dt %>%
+  kbl(caption = "Table 1: Simple Linear Regression Analysis") %>%
+  kable_classic(full_width = F, html_font = "Cambria")
+```
 
 
 $$\LARGE \hat{\beta}_1 = 0.174$$
@@ -56,6 +72,7 @@ $$\LARGE \hat{y} = -10.107 + 0.174(85) = 4.683$$
 optic_data = read.csv("optic.csv")
 model <- lm(range ~ bright + contrast, data = optic_data)
 summary(model)
+
 ```
 
 ```{r setup, include=FALSE}
@@ -74,6 +91,9 @@ dt %>%
   kbl(caption = "Table 1: Regression Analysis") %>%
   kable_classic(full_width = F, html_font = "Cambria")
 ```
+
+
+
 
 
 #### Fitted Multiple Linear Regression Model:
